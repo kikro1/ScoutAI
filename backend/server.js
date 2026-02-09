@@ -63,9 +63,15 @@ app.post("/api/chat", async (req, res) => {
     const answer = completion.choices?.[0]?.message?.content || "";
     return res.json({ answer });
   } catch (err) {
-    return res.status(500).json({ error: "Server error", detail: String(err.message || err) });
-  }
+  const status = err?.status || err?.response?.status || 500;
+  res.status(status).json({
+    error: "OpenAI request failed",
+    detail: err?.message ? String(err.message) : String(err)
+  });
+}
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`ScoutAI backend running on :${PORT}`);
