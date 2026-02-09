@@ -2,7 +2,9 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+
 
 const app = express();
 
@@ -27,7 +29,7 @@ app.use(rateLimit({
   legacyHeaders: false
 }));
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 function systemPrompt(level){
   if (level === "School") {
@@ -51,22 +53,22 @@ app.post("/api/chat", async (req, res) => {
 
     const lvl = ["School", "University", "Expert"].includes(level) ? level : "University";
 
-    const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
-      temperature: 0.4,
-      messages: [
-        { role: "system", content: systemPrompt(lvl) },
-        { role: "user", content: message.trim() }
-      ]
-    });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // быстрый и дешёвый старт
 
-    const answer = completion.choices?.[0]?.message?.content || "";
-    return res.json({ answer });
+const prompt = `${systemPrompt(lvl)}\n\nUser question:\n${message.trim()}`;
+
+const result = await model.generateContent(prompt);
+const answer = result.response.text();
+
+return res.json({ answer });
+
+
+
   } catch (err) {
-  const status = err?.status || err?.response?.status || 500;
-  res.status(status).json({
-    error: "OpenAI request failed",
-    detail: err?.message ? String(err.message) : String(err)
+  const status = err?.status || 500;
+  return res.status(status).json({
+    error: "Gemini request failed",
+    detail: String(err?.message || err),
   });
 }
 });
@@ -80,3 +82,5 @@ app.listen(PORT, () => {
 app.get("/", (req, res) => {
   res.status(200).send("ScoutAI backend is running ✅ Use GET /health and POST /api/chat");
 });
+
+
