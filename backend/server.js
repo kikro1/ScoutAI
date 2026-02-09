@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
-import { GoogleGenerativeAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const app = express();
 
@@ -62,7 +62,7 @@ app.post("/api/chat", async (req, res) => {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
     const prompt = `${systemPrompt(lvl)}\n\nUser question:\n${message.trim()}`;
 
@@ -80,3 +80,14 @@ app.post("/api/chat", async (req, res) => {
 });
 
 app.listen(PORT, () => console.log("ScoutAI backend (Gemini) running on", PORT));
+
+app.get("/models", async (req, res) => {
+  try {
+    const apiKey = process.env.GEMINI_API_KEY;
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+    const data = await r.json();
+    res.json(data);
+  } catch (e) {
+    res.status(500).json({ error: String(e) });
+  }
+});
