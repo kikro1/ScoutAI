@@ -76,3 +76,7 @@ app.post("/api/chat", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`ScoutAI backend running on :${PORT}`);
 });
+
+app.get("/", (req, res) => {
+  res.status(200).send("ScoutAI backend is running ✅ Use GET /health and POST /api/chat");
+});
