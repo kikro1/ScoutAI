@@ -1,6 +1,7 @@
 // ======= CONFIG =======
 // Вставишь сюда URL твоего Render backend после деплоя
-const API_BASE = "https://YOUR-RENDER-SERVICE.onrender.com";
+
+const API_BASE = "https://scoutai-p6y7.onrender.com";
 
 const LS_KEY = "scoutai_state_v1";
 
