@@ -1,6 +1,3 @@
-// ======= CONFIG =======
-// Вставишь сюда URL твоего Render backend после деплоя
-
 const API_BASE = "https://scoutai-p6y7.onrender.com";
 
 
@@ -155,7 +152,8 @@ async function onSend(state){
     saveState(state);
     renderAll(state);
   }catch(err){
-    chat.messages.push({ role:"ai", content: "⚠️ Sorry — I couldn’t reach the server. Check your Render URL in app.js and try again.\n\n" + String(err.message||err) });
+    // chat.messages.push({ role:"ai", content: "⚠️ Sorry — I couldn’t reach the server. Check your Render URL in app.js and try again.\n\n" + String(err.message||err) });
+    chat.messages.push({ role:"ai", content: "⚠️ Sorry — I couldn’t reach the server. Please try again later." });
     saveState(state);
     renderAll(state);
   }finally{
@@ -201,3 +199,9 @@ window.addEventListener("DOMContentLoaded", ()=>{
   hookPdf();
   renderAll(state);
 });
+
+// logout
+$("#logoutBtn").onclick = () => {
+  localStorage.removeItem(SESSION_KEY);
+  location.href = "login.html";
+};

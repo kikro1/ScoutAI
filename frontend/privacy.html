@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy — ScoutAI</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html"><span class="dot" aria-hidden="true"></span> ScoutAI</a>
+      <div class="navlinks">
+        <a data-nav href="index.html">Home</a>
+        <a data-nav href="features.html">Features</a>
+        <a data-nav href="support.html">Support</a>
+        <a data-nav href="privacy.html">Privacy</a>
+        <a data-nav class="primary" href="app.html">Open App</a>
+        <span id="authNav"></span>
+      </div>
+    </nav>
+
+    <section class="card" style="margin-top:18px">
+      <h1>Privacy Policy</h1>
+
+
+      <div class="grid3" style="grid-template-columns:1fr; gap:12px; margin-top:14px">
+        <div class="card" style="background:rgba(255,255,255,.03)">
+          <h2>What data we process</h2>
+          <p class="small">ScoutAI processes the text you submit in the chat in order to generate an answer. In v1, chat history is stored locally in your browser (localStorage).</p>
+        </div>
+
+        <div class="card" style="background:rgba(255,255,255,.03)">
+          <h2>File uploads</h2>
+          <p class="small">In the prototype, uploading a PDF is only used to select a file; if you paste text from a document into the chat, that text is sent to the backend for processing.</p>
+        </div>
+
+        <div class="card" style="background:rgba(255,255,255,.03)">
+          <h2>Third-party AI</h2>
+          <p class="small">Responses are generated using a third-party AI secure provider.</p>
+        </div>
+
+        <div class="card" style="background:rgba(255,255,255,.03)">
+          <h2>Security</h2>
+          <p class="small">The backend uses basic protections (CORS and rate limiting).</p>
+        </div>
+
+        <div class="card" style="background:rgba(255,255,255,.03)">
+          <h2>Your control</h2>
+          <p class="small">You can clear stored chats by clearing site data in your browser. Future versions could include account deletion and export options.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+        <a class="btn" href="terms.html">Read Terms</a>
+        <a class="btn primary" href="app.html">Open App</a>
+      </div>
+    </section>
+
+    <div class="footer">© ScoutAI • <a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div>
+  </div>
+
+  <script src="assets/router.js"></script>
+  <script src="assets/nav-auth.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — ScoutAI</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html"><span class="dot" aria-hidden="true"></span> ScoutAI</a>
+      <div class="navlinks">
+        <a data-nav href="index.html">Home</a>
+        <a data-nav href="features.html">Features</a>
+        <a data-nav href="support.html">Support</a>
+        <a data-nav href="privacy.html">Privacy</a>
+        <span id="authNav"></span>
+      </div>
+    </nav>
+
+    <section class="hero" style="grid-template-columns:1fr; margin-top:18px">
+      <div class="card" style="max-width:720px; margin:0 auto">
+        <h1>Welcome back</h1>
+        <p>Prototype authentication for the assignment. Accounts are stored locally in your browser (localStorage).</p>
+
+        <div class="row" style="margin-top:12px">
+          <button class="btn primary" id="tabLogin">Login</button>
+          <button class="btn" id="tabSignup">Sign up</button>
+          <div style="flex:1"></div>
+          <span class="badge">No payments • Prototype</span>
+        </div>
+
+        <div style="margin-top:14px; border-top:1px solid var(--border); padding-top:14px">
+          <!-- LOGIN -->
+          <form id="loginForm" aria-label="Login form">
+            <div class="grid3" style="grid-template-columns:1fr 1fr; gap:12px">
+              <div>
+                <label class="small muted" for="loginEmail">Email</label>
+                <input id="loginEmail" type="email" required
+                  style="width:100%; margin-top:6px; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(0,0,0,.20); color:var(--text);" />
+              </div>
+              <div>
+                <label class="small muted" for="loginPass">Password</label>
+                <input id="loginPass" type="password" required
+                  style="width:100%; margin-top:6px; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(0,0,0,.20); color:var(--text);" />
+              </div>
+            </div>
+
+            <div class="row" style="margin-top:12px; justify-content:space-between">
+              <span class="small muted">Tip: use any email + password (stored locally).</span>
+              <button class="btn primary" type="submit">Login</button>
+            </div>
+          </form>
+
+          <!-- SIGNUP -->
+          <form id="signupForm" style="display:none" aria-label="Sign up form">
+            <div class="grid3" style="grid-template-columns:1fr 1fr; gap:12px">
+              <div>
+                <label class="small muted" for="signupName">Name</label>
+                <input id="signupName" type="text" required
+                  style="width:100%; margin-top:6px; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(0,0,0,.20); color:var(--text);" />
+              </div>
+              <div>
+                <label class="small muted" for="signupEmail">Email</label>
+                <input id="signupEmail" type="email" required
+                  style="width:100%; margin-top:6px; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(0,0,0,.20); color:var(--text);" />
+              </div>
+              <div>
+                <label class="small muted" for="signupPass">Password</label>
+                <input id="signupPass" type="password" minlength="6" required
+                  style="width:100%; margin-top:6px; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(0,0,0,.20); color:var(--text);" />
+              </div>
+              <div>
+                <label class="small muted" for="signupPass2">Confirm password</label>
+                <input id="signupPass2" type="password" minlength="6" required
+                  style="width:100%; margin-top:6px; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(0,0,0,.20); color:var(--text);" />
+              </div>
+            </div>
+
+            <div class="row" style="margin-top:12px; justify-content:space-between">
+              <span class="small muted">Passwords must match. Stored locally in your browser.</span>
+              <button class="btn primary" type="submit">Create account</button>
+            </div>
+          </form>
+
+          <div id="authMsg" class="hint" role="status" aria-live="polite" style="margin-top:10px"></div>
+        </div>
+
+        <div class="hint">
+          Note: This is a prototype for the assignment. In a real product, authentication would be handled securely on the server.
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="privacy.html">Privacy</a>
+          <a class="btn" href="terms.html">Terms</a>
+          <a class="btn" href="index.html">Back home</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">© ScoutAI • <a href="terms.html">Terms</a> • <a href="privacy.html">Privacy</a></div>
+  </div>
+
+  <script src="assets/router.js"></script>
+  <script src="assets/auth.js"></script>
+  <script src="assets/nav-auth.js" type="module"></script>
+</body>
+</html>
